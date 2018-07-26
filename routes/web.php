@@ -12,5 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('user.homepage');
+})->name('home');
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+})->name('dashboard');
+
+Route::get('/statistic' , 'StatisticController@index')->name('statistic');
+
+Route::resource('users' , 'UserController');
+Route::resource('category' , 'CategoryController' );
+Route::resource('books' , 'BookController' );
+Route::resource('publishers' , 'PublisherController' );

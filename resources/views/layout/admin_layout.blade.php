@@ -35,12 +35,13 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top m-b-0">
             <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></a>
-                <div class="top-left-part"><a class="logo" href="index.html"><b><img src="{!! asset('/bower_components/admin/plugins/images/pixeladmin-logo.png') !!}" alt="home" /></b><span class="hidden-xs"><img src="{!! asset('/bower_components/admin/plugins/images/pixeladmin-text.png') !!}" alt="home" /></span></a></div>
+                <div class="top-left-part"><a class="logo" href="{{route('dashboard')}}"><b><img src="{!! asset('/bower_components/admin/plugins/images/pixeladmin-logo.png') !!}" alt="home" /></b><span class="hidden-xs"><img src="{!! asset('/bower_components/admin/plugins/images/pixeladmin-text.png') !!}" alt="home" /></span></a></div>
                 <ul class="nav navbar-top-links navbar-left m-l-20 hidden-xs">
                     <li>
-                        <form role="search" class="app-search hidden-xs">
-                            <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a>
-                        </form>
+                        {!! Form::open(['url' => '' , 'role' => 'search' , 'class' => 'app-search hidden-sx']) !!}
+                            {!! Form::text('search' , '',['placeholder' => 'Search...' , 'class' => 'form-control']) !!}
+                            <a href=""><i class="fa fa-search"></i></a>
+                        {!! Form::close() !!}
                     </li>
                 </ul>
                 <ul class="nav navbar-top-links navbar-right pull-right">
@@ -58,25 +59,25 @@
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="index.html" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a>
+                        <a href="{{route('dashboard')}}" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a>
                     </li>
                     <li>
-                        <a href="profile.html" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i><span class="hide-menu">{{trans('common.user')}}</span></a>
+                        <a href="{{route('users.index')}}" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i><span class="hide-menu">{{trans('common.user')}}</span></a>
                     </li>
                     <li>
-                        <a href="basic-table.html" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i><span class="hide-menu">{{trans('common.book')}}</span></a>
+                        <a href="{{route('books.index')}}" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i><span class="hide-menu">{{trans('common.book')}}</span></a>
                     </li>
                     <li>
-                        <a href="fontawesome.html" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i><span class="hide-menu">{{trans('common.category')}}</span></a>
+                        <a href="{{route('category.index')}}" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i><span class="hide-menu">{{trans('common.category')}}</span></a>
                     </li>
                     <li>
-                        <a href="map-google.html" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i><span class="hide-menu">{{trans('common.publisher')}}</span></a>
+                        <a href="{{route('publishers.index')}}" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i><span class="hide-menu">{{trans('common.publisher')}}</span></a>
                     </li>
                     <li>
-                        <a href="blank.html" class="waves-effect"><i class="fa fa-columns fa-fw" aria-hidden="true"></i><span class="hide-menu">{{trans('common.statistic')}}</span></a>
+                        <a href="{{route('statistic')}}" class="waves-effect"><i class="fa fa-columns fa-fw" aria-hidden="true"></i><span class="hide-menu">{{trans('common.statistic')}}</span></a>
                     </li>
                     <li>
-                        <a href="404.html" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i><span class="hide-menu">{{trans('common.error')}}s</span></a>
+                        <a href="{{route('statistic')}}" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i><span class="hide-menu">{{trans('common.error')}}s</span></a>
                     </li>
                 </ul>
                 <div class="center p-20">
@@ -104,7 +105,7 @@
                 </div>
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2017 &copy; Pixel Admin brought to you by wrappixel.com </footer>
+            <footer class="footer text-center">{{trans('common.footerContent')}} </footer>
         </div>
 
         <!-- /#page-wrapper -->
@@ -133,8 +134,8 @@
     <script type="text/javascript">
     $(document).ready(function() {
         $.toast({
-            heading: 'Welcome to Pixel admin',
-            text: 'Use the predefined ones, or specify a custom position object.',
+            heading: '{{trans('common.heading')}}',
+            text: '{{trans('common.text')}}',
             position: 'top-right',
             loaderBg: '#ff6849',
             icon: 'info',
