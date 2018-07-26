@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="/bower_components/admin/plugins/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{!! asset('/bower_components/admin/plugins/images/favicon.png') !!}">
     <title>Pixel Admin - Responsive Admin Dashboard Template built with Twitter Bootstrap</title>
     <!-- Bootstrap Core CSS -->
     <link href="{!! asset('/bower_components/admin/bootstrap/dist/css/bootstrap.min.css') !!}" rel="stylesheet">
@@ -68,7 +68,7 @@
                         <a href="{{route('books.index')}}" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i><span class="hide-menu">{{trans('common.book')}}</span></a>
                     </li>
                     <li>
-                        <a href="{{route('category.index')}}" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i><span class="hide-menu">{{trans('common.category')}}</span></a>
+                        <a href="{{route('categories.index')}}" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i><span class="hide-menu">{{trans('common.category')}}</span></a>
                     </li>
                     <li>
                         <a href="{{route('publishers.index')}}" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i><span class="hide-menu">{{trans('common.publisher')}}</span></a>
@@ -81,7 +81,7 @@
                     </li>
                 </ul>
                 <div class="center p-20">
-                    <span class="hide-menu"><a href="http://wrappixel.com/templates/pixeladmin/" target="_blank" class="btn btn-danger btn-block btn-rounded waves-effect waves-light">{{trans('common.upgrade')}}</a></span>
+                    <span class="hide-menu"><a href="{{route('home')}}" target="_blank" class="btn btn-danger btn-block btn-rounded waves-effect waves-light">{{trans('common.upgrade')}}</a></span>
                 </div>
             </div>
         </div>
@@ -92,7 +92,7 @@
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                         <h4 class="page-title">@yield('title')</h4> </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12"> <a href="http://wrappixel.com/templates/pixeladmin/" target="_blank" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">{{trans('common.upgrade')}}</a>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12"> <a href="{{route('home')}}" target="_blank" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">{{trans('common.upgrade')}}</a>
                         <ol class="breadcrumb">
                             <li><a href="#">@yield('title')</a></li>
                         </ol>

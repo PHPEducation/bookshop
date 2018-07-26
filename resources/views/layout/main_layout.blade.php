@@ -31,17 +31,17 @@
             <section class="row-fluid">
                 <section class="span6">
                     <ul class="top-nav">
-                        <li><a href="{{route('home')}}" class="active">{{trans('common.homepage')}}</a></li>
-                        <li><a href="{{route('home')}}">{{trans('common.onlineStore')}}</a></li>
+                        <li><a href="{{route('home')}}" class="active">{{trans('common.home_page')}}</a></li>
+                        <li><a href="{{route('home')}}">{{trans('common.online_store')}}</a></li>
                         <li><a href="{{route('home')}}">Blog</a></li>
-                        <li><a href="{{route('home')}}">{{trans('common.shortCode')}}</a></li>
+                        <li><a href="{{route('home')}}">{{trans('common.short_code')}}</a></li>
                         <li><a href="{{route('home')}}">{{trans('common.news')}}</a></li>
                         <li><a href="{{route('home')}}">{{trans('common.contact')}}</a></li>
                     </ul>
                 </section>
                 <section class="span6 e-commerce-list">
                     <ul>
-                        <li>Welcome! <a href="{{route('home')}}">{{trans('common.login')}}</a> or <a href="{{route('home')}}">{{trans('common.createAccount')}}</a></li>
+                        <li>Welcome! <a href="{{route('home')}}">{{trans('common.login')}}</a> or <a href="{{route('home')}}">{{trans('common.create_account')}}</a></li>
                         <li class="p-category"><a href="#">$</a> <a href="#">£</a> <a href="#">€</a></li>
                         <li class="p-category"><a href="#">eng</a> <a href="#">de</a> <a href="#">fr</a></li>
                     </ul>
@@ -63,7 +63,7 @@
         <section class="container-fluid container">
             <section class="row-fluid">
                 <section class="span4">
-                    <h1 id="logo"> <a href="{{route('home')}}"><img src="/bower_components/user/images/logo.png" /></a> </h1>
+                    <h1 id="logo"> <a href="{{route('home')}}"><img src="{!! asset('/bower_components/user/images/logo.png') !!}" /></a> </h1>
                 </section>
                 <section class="span8">
                     <ul class="top-nav2">
@@ -123,7 +123,7 @@
                     <div id="socialicons" class="hidden-phone"> <a id="social_linkedin" class="social_active" href="#" title="Visit Google Plus page"><span></span></a> <a id="social_facebook" class="social_active" href="#" title="Visit Facebook page"><span></span></a> <a id="social_twitter" class="social_active" href="#" title="Visit Twitter page"><span></span></a> <a id="social_youtube" class="social_active" href="#" title="Visit Youtube"><span></span></a> <a id="social_vimeo" class="social_active" href="#" title="Visit Vimeo"><span></span></a> <a id="social_trumblr" class="social_active" href="#" title="Visit Vimeo"><span></span></a> <a id="social_google_plus" class="social_active" href="#" title="Visit Vimeo"><span></span></a> <a id="social_dribbble" class="social_active" href="#" title="Visit Vimeo"><span></span></a> <a id="social_pinterest" class="social_active" href="#" title="Visit Vimeo"><span></span></a> </div>
                     <ul class="footer2-link">
                         <li><a href="{{route('home')}}">{{trans('common.about')}}</a></li>
-                        <li><a href="{{route('home')}}">{{trans('common.cusService')}}</a></li>
+                        <li><a href="{{route('home')}}">{{trans('common.cus_service')}}</a></li>
                         <li><a href="{{route('home')}}">{{trans('common.order')}}</a></li>
                     </ul>
                 </section>
@@ -132,7 +132,7 @@
         <section class="container">
             <section class="row-fluid">
                 <figure class="span4">
-                    <h4>{{trans('common.bestSellers')}}</h4>
+                    <h4>{{trans('common.best_sellers')}}</h4>
                     <ul class="f2-img-list">
                         <li>
                             <div class="left"><a href="{{route('home')}}"><img src="{!! asset('/bower_components/user/images/image19.jpg') !!}" /></a></div>
@@ -161,7 +161,7 @@
                     </ul>
                 </figure>
                 <figure class="span4">
-                    <h4>{{trans('common.topRateBooks')}}</h4>
+                    <h4>{{trans('common.top_rate_books')}}</h4>
                     <ul class="f2-img-list">
                         <li>
                             <div class="left"><a href="{{route('home')}}"><img src="{!! asset('/bower_components/user/images/image35.jpg') !!}" alt=""/></a></div>
@@ -190,7 +190,7 @@
                     </ul>
                 </figure>
                 <figure class="span4">
-                    <h4>{{trans('common.fromBlog')}}</h4>
+                    <h4>{{trans('common.from_blog')}}</h4>
                     <ul class="f2-pots-list">
                         <li> <span class="post-date2">28 APR</span> <a href="{{route('home')}}">{{trans('common.blogdes')}}</a> <span class="comments-num">6 comments</span> </li>
                         <li> <span class="post-date2">28 APR</span> <a href="{{route('home')}}">{{trans('common.blogdes')}}</a> <span class="comments-num">6 comments</span> </li>
@@ -207,10 +207,10 @@
             <section class="container">
                 <section class="row-fluid">
                     <article class="span6">
-                        <p>{{trans('common.homeFooter')}}</p>
+                        <p>{{trans('common.home_footer')}}</p>
                     </article>
                     <article class="span6 copy-right">
-                        <p>Designed by <a href="http://www.crunchpress.com/">Crunchpress.com</a></p>
+                        <p>Designed by <a href="{{route('home')}}">Crunchpress.com</a></p>
                     </article>
                 </section>
             </section>
