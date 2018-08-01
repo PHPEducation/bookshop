@@ -21,3 +21,6 @@ Route::resource('users', 'UserController');
 Route::resource('categories', 'CategoryController');
 Route::resource('books', 'BookController');
 Route::resource('publishers', 'PublisherController');
+
+Route::get('/logout', 'HomeController@logout');
+Route::get('/categories', 'CategoriesController@index')->name('categories');

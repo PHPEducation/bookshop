@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Category;
 
-class UserController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $categories = Category::all();
 
-        return view('admin.user.show', compact('users'));
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.add');
+        //
     }
 
     /**
@@ -37,29 +37,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        
-        $user = new User();
-
-        $user->name = $data['name'];
-
-        $user->username = $data['username'];
-
-        $user->password = bcrypt($data['password']);
-
-        $user->email = $data['email'];
-
-        $user->phone = $data['phone'];
-
-        $user->address = $data['address'];
-
-        $user->birthday = $data['birthday'];
-
-        $user->save();
-
-        echo json_encode([
-            'error' => 0,
-        ]);
+        //
     }
 
     /**
@@ -81,9 +59,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::where('id', $id)->first();
-
-        return view('admin.user.edit', compact('user'));
+        //
     }
 
     /**
@@ -95,17 +71,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
-
-        unset($data['_method']);
-        
-        unset($data['_token']);
-
-        User::where('id', $id)->update($data);
-
-        return json_encode([
-            'error' => 0,
-        ]);
+        //
     }
 
     /**
@@ -116,10 +82,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::where('id', $id)->delete();
-
-        return json_encode([
-            'error' => 0,
-        ]);
+        //
     }
 }

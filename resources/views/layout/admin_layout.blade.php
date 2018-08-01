@@ -153,18 +153,6 @@
     <!-- /#wrapper -->
     <script type="text/javascript">
     $(document).ready(function() {
-<<<<<<< HEAD
-=======
-        // $.toast({
-        //     heading: '{{trans('common.heading')}}',
-        //     text: '{{trans('common.text')}}',
-        //     position: 'top-right',
-        //     loaderBg: '#ff6849',
-        //     icon: 'info',
-        //     hideAfter: 3500,
-        //     stack: 6
-        // });
->>>>>>> cc8f415f87263d805edd1b93594e98f74926fccc
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
