@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('admin.user.show' , compact('users'));
+        return view('admin.user.show', compact('users'));
     }
 
     /**
@@ -61,7 +61,7 @@ class UserController extends Controller
     {
         $user = User::where('id', $id)->first();
 
-        return view('admin.user.edit' , compact('user'));
+        return view('admin.user.edit', compact('user'));
     }
 
     /**
@@ -79,11 +79,11 @@ class UserController extends Controller
         
         unset($data['_token']);
 
-        User::where('id' , $id)->update($data);
+        User::where('id', $id)->update($data);
 
-        return json_encode(array(
+        return json_encode([
             'error' => 0,
-        ));
+        ]);
     }
 
     /**
@@ -94,10 +94,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::where('id' ,$id)->delete();
+        User::where('id', $id)->delete();
 
-        return json_encode(array(
-            'error' => 0
-        ));
+        return json_encode([
+            'error' => 0,
+        ]);
     }
 }

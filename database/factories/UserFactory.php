@@ -22,9 +22,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'birthday' => $faker->date(),
         'address' => $faker->streetAddress,
         'phone' => $faker->tollFreePhoneNumber,
-        'role' => $faker->numberBetween(0,4),
+        'role' => $faker->numberBetween(0, 4),
         'remember_token' => str_random(10),
     ];
 });
-
-

@@ -358,6 +358,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+            $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd'});
         })
         /* ]]> */
     </script>
