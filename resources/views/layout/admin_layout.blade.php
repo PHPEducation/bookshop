@@ -7,14 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-<<<<<<< HEAD
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{!! asset('/bower_components/admin/plugins/images/favicon.png') !!}">
-    <title>Pixel Admin - Responsive Admin Dashboard Template built with Twitter Bootstrap</title>
-=======
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/bower_components/admin/plugins/images/favicon.png')}}">
     <title>{{ trans('messages.dashboard') }}</title>
->>>>>>> b6fc88ce62c28db285ee7bddaaddb8d9dd466acb
     <!-- Bootstrap Core CSS -->
     <link href="{!! asset('/bower_components/admin/bootstrap/dist/css/bootstrap.min.css') !!}" rel="stylesheet">
     <!-- Menu CSS -->
@@ -32,7 +27,7 @@
     <!-- bootstrap Modal -->
     <link rel="stylesheet" type="text/css" href="{!! asset('/bower_components/bootstrap-modal/css/bootstrap-modal.css') !!}">
     <link rel="stylesheet" type="text/css" href="{!! asset('/css/bookshop.css') !!}">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&amp;subset=vietnamese" rel="stylesheet">
+    <link href="{!! asset('/css/fonts.css?family=Roboto&amp;subset=vietnamese') !!}" rel="stylesheet">
     <!-- jQuery -->
     <script src="{!! asset('/bower_components/admin/plugins/bower_components/jquery/dist/jquery.min.js') !!}"></script>
     <!-- Bootstrap Core JavaScript -->
@@ -55,6 +50,7 @@
     <script src="{!! asset('/bower_components/admin/plugins/bower_components/toast-master/js/jquery.toast.js') !!}"></script>
     <script type="text/javascript" src="{!! asset('/bower_components/bootstrap-modal/js/bootstrap-modal.js') !!}"></script>
     <script type="text/javascript" src="{!! asset('/bower_components/bootstrap-modal/js/bootstrap-modalmanager.js') !!}"></script>
+    <link rel="stylesheet" type="text/css" href="{!! asset('/css/bookshop.css') !!}">
 </head>
 
 <body>
@@ -158,6 +154,7 @@
     <script type="text/javascript">
     $(document).ready(function() {
 <<<<<<< HEAD
+=======
         // $.toast({
         //     heading: '{{trans('common.heading')}}',
         //     text: '{{trans('common.text')}}',
@@ -167,22 +164,12 @@
         //     hideAfter: 3500,
         //     stack: 6
         // });
+>>>>>>> cc8f415f87263d805edd1b93594e98f74926fccc
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-=======
-        $.toast({
-            heading: 'Welcome to Pixel admin',
-            text: 'Use the predefined ones, or specify a custom position object.',
-            position: 'top-right',
-            loaderBg: '#ff6849',
-            icon: 'info',
-            hideAfter: 3500,
-            stack: 6
-        })
->>>>>>> b6fc88ce62c28db285ee7bddaaddb8d9dd466acb
     });
     </script>
 </body>

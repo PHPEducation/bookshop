@@ -1,6 +1,5 @@
 @extends('layout.main_layout')
+@section('title', trans('messages.home'))
 @section('content')
-<div class="container">
-   {{ trans('messages.home')}}
-</div>
+
 @endsection
