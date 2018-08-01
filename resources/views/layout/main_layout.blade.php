@@ -1,12 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>Book Store</title>
+        <title>{{ trans('messages.store')}}</title>
         <meta http-equiv="cache-control" content="no-cache">
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <meta name="viewport" content="width=device-width">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Css Files Start -->
         <link href="{!! asset('/bower_components/user/css/style.css') !!}" rel="stylesheet" type="text/css" /><!-- All css -->  
         <link href="{!! asset('/bower_components/user/css/bs.css') !!}" rel="stylesheet" type="text/css" /><!-- Bootstrap Css -->
@@ -15,11 +16,12 @@
         <link href="{!! asset('/bower_components/user/css/font-awesome.css') !!}" rel="stylesheet" type="text/css" /><!-- Font Awesome Css -->
         <link href="{!! asset('/bower_components/user/css/font-awesome-ie7.css') !!}" rel="stylesheet" type="text/css" /><!-- Font Awesome iE7 Css -->
         <link rel="stylesheet" type="text/css" href="{!! asset('/css/bookshop.css') !!}">
+        <link rel="stylesheet" type="text/css" href="{!! asset('/css/style.css') !!}">
         <noscript>
             <link rel="stylesheet" type="text/css" href="{!! asset('/bower_components/user/css/noJS.css') !!}" />
         </noscript>
         <!-- Css Files End -->
-</head>
+    </head>
 <body>
 <!-- Start Main Wrapper -->
 <div class="wrapper">
@@ -31,27 +33,53 @@
             <section class="row-fluid">
                 <section class="span6">
                     <ul class="top-nav">
-                        <li><a href="{{route('home')}}" class="active">{{trans('common.home_page')}}</a></li>
-                        <li><a href="{{route('home')}}">{{trans('common.online_store')}}</a></li>
-                        <li><a href="{{route('home')}}">Blog</a></li>
-                        <li><a href="{{route('home')}}">{{trans('common.short_code')}}</a></li>
-                        <li><a href="{{route('home')}}">{{trans('common.news')}}</a></li>
-                        <li><a href="{{route('home')}}">{{trans('common.contact')}}</a></li>
+                        <li>
+                            <a href="#" class="active">
+                                {{ trans('messages.home')}}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                {{ trans('messages.online')}}
+                            </a>
+                        </li> 
+                        <li>
+                            <a href="#">
+                                {{ trans('messages.new')}}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                {{ trans('messages.contact')}}
+                            </a>
+                        </li>
                     </ul>
                 </section>
                 <section class="span6 e-commerce-list">
                     <ul>
-                        <li>Welcome! <a href="{{route('home')}}">{{trans('common.login')}}</a> or <a href="{{route('home')}}">{{trans('common.create_account')}}</a></li>
-                        <li class="p-category"><a href="#">$</a> <a href="#">£</a> <a href="#">€</a></li>
-                        <li class="p-category"><a href="#">eng</a> <a href="#">de</a> <a href="#">fr</a></li>
+                        <li>
+                            @if( Auth::user() )
+                                {{ trans('messages.welcome') }}
+                                {{ Auth::user()->name }}
+                            @else
+                                <a href="{!! url( 'login' ) !!}">
+                                    {{ trans('messages.login')}}
+                                </a> or 
+                                <a href="{!! url( 'register' ) !!}">
+                                    {{ trans('messages.register')}}
+                                </a>
+                            @endif
+                        </li>
                     </ul>
-                    <div class="c-btn"> <a href="{{route('home')}}" class="cart-btn">{{trans('common.cart')}}</a>
+                    <div class="c-btn">
+                        <a href="cart.html" class="cart-btn">
+                            {{ trans('messages.cart')}}
+                        </a>
                         <div class="btn-group">
-                              <button data-toggle="dropdown" class="btn btn-mini dropdown-toggle">0 item(s) - $0.00<span class="caret"></span></button>
-                              <ul class="dropdown-menu">
-                                  <li><a href="#">{{trans('common.action')}}</a></li>
-                                  <li><a href="#">{{trans('common.aaction')}}</a></li>
-                              </ul>
+                            <button data-toggle="dropdown" class="btn btn-mini dropdown-toggle">0 (s) - $0.00
+                                <span class="caret">
+                                </span>
+                            </button>
                         </div>
                     </div>
                 </section>
@@ -63,18 +91,33 @@
         <section class="container-fluid container">
             <section class="row-fluid">
                 <section class="span4">
-                    <h1 id="logo"> <a href="{{route('home')}}"><img src="{!! asset('/bower_components/user/images/logo.png') !!}" /></a> </h1>
+                    <h1 id="logo">
+                        <a href="#">
+                            <img src="{{ asset('/bower_components/user/images/logo.png')}}" />
+                        </a>
+                    </h1>
                 </section>
                 <section class="span8">
                     <ul class="top-nav2">
-                        <li><a href="{{route('home')}}">{{trans('common.account')}}</a></li>
-                        <li><a href="{{route('home')}}">{{trans('common.cart')}}</a></li>
-                        <li><a href="{{route('home')}}">{{trans('common.checkout')}}</a></li>
-                        <li><a href="{{route('home')}}">{{trans('common.order')}}</a></li>
+                        <li>
+                            <a href="#">
+                                {{ trans('messages.account')}}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                {{ trans('messages.cart')}}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                {{ trans('messages.order')}}
+                            </a>
+                        </li>
                     </ul>
                     <div class="search-bar">
-                        <input name="" type="text" value="search entire store here..." />
-                        <input name="" type="button" value="Serach" />
+                        {{ Form::text( 'textSearch', null, [ 'placeholder' => '...' ])}}
+                        {{ Form::button('Search') }}
                     </div>
                 </section>
             </section>
@@ -83,22 +126,23 @@
         <nav id="nav">
             <div class="navbar navbar-inverse">
                 <div class="navbar-inner">
-                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                            <li> <a href="{{route('home')}}">{{trans('common.books')}}</a> </li>
-                            <li> <a href="{{route('home')}}">{{trans('common.books')}}</a></li>
-                            <li><a href="{{route('home')}}">{{trans('common.books')}}</a></li>
-                            <li><a href="{{route('home')}}">{{trans('common.books')}}</a></li>
-                            <li><a href="{{route('home')}}">{{trans('common.books')}}</a></li>
-                            <li><a href="{{route('home')}}">{{trans('common.books')}}</a></li>
-                            <li class="dropdown"> <a class="dropdown-toggle" href="{{route('home')}}" data-toggle="dropdown"><i class="icon-heart"></i> {{trans('common.books')}}<b class="caret"></b> </a>
+                            <li>
+                                <a href="grid-view.html">
+                                    {{ trans('messages.category')}}
+                                </a>
                             </li>
-                            <li class="dropdown"> <a class="dropdown-toggle" href="{{route('home')}}" data-toggle="dropdown">{{trans('common.books')}}Movies & TV <b class="caret"></b> </a>
+                            <li>
+                                <a href="grid-view.html">
+                                    {{ trans('messages.game')}}
+                                </a>
                             </li>
-                            <li> <a href="{{route('home')}}">{{trans('common.books')}}</a></li>
-                            <li> <a href="{{route('home')}}">{{trans('common.books')}}</a> </li>
-                            <li><a href="{{route('home')}}">{{trans('common.books')}}</a></li>
                         </ul>
                     </div>
                     <!--/.nav-collapse -->
@@ -114,17 +158,103 @@
     <section id="content-holder" class="container-fluid container">
         @yield('content')
     </section>
+    <section class="container-fluid footer-top1">
+        <section class="container">
+            <section class="row-fluid">
+                <figure class="span3">
+                    <h4>
+                        {{ trans('messages.letter')}}
+                    </h4>
+                    <p>abcxyz</p>
+                    <input name="" type="text" class="field-bg" value="{{ trans('messages.email')}}"/>
+                    <input name="" type="submit" value="{{ trans('messages.subscribe')}}" class="sub-btn" />
+                </figure>
+                <figure class="span3">
+                    <h4>Twitter</h4>
+                    <ul class="tweets-list">
+                        <li>Twitter</a></li>
+                        <li>Twitter2</a></li>
+                    </ul>
+                </figure>
+                <figure class="span3">
+                    <h4>
+                        {{ trans('messages.location')}}
+                    </h4>
+                    <p>abcxyz</p>
+                    <span>
+                    <ul class="phon-list">
+                        <li>(971) 438-555-314</li>
+                        <li>(971) 367-252-333</li>
+                    </ul>
+                    </span>
+                    <span class="mail-list">
+                        <a href="#">info@companyname</a><br />
+                        <a href="#">jobs@companyname.com</a>
+                    </span>
+                </figure>
+                <figure class="span3">
+                    <h4>
+                        {{ trans('messages.time')}}
+                    </h4>
+                    <p>
+                        {{ trans('messages.day')}} ______8.00 to 18.00
+                    </p>
+                    <p>
+                        {{ trans('messages.day_7')}} ____________ 9.00 to 18.00
+                    </p>
+                    <p>
+                        {{ trans('messages.day_8')}} _____________10.00 to 16.00
+                    </p>
+                    <p>abcxyz</p>
+                </figure>
+            </section>
+        </section>
+    </section>
     <!-- End Footer Top 1 -->
     <!-- Start Footer Top 2 -->
     <section class="container-fluid footer-top2">
         <section class="social-ico-bar">
             <section class="container">
                 <section class="row-fluid">
-                    <div id="socialicons" class="hidden-phone"> <a id="social_linkedin" class="social_active" href="#" title="Visit Google Plus page"><span></span></a> <a id="social_facebook" class="social_active" href="#" title="Visit Facebook page"><span></span></a> <a id="social_twitter" class="social_active" href="#" title="Visit Twitter page"><span></span></a> <a id="social_youtube" class="social_active" href="#" title="Visit Youtube"><span></span></a> <a id="social_vimeo" class="social_active" href="#" title="Visit Vimeo"><span></span></a> <a id="social_trumblr" class="social_active" href="#" title="Visit Vimeo"><span></span></a> <a id="social_google_plus" class="social_active" href="#" title="Visit Vimeo"><span></span></a> <a id="social_dribbble" class="social_active" href="#" title="Visit Vimeo"><span></span></a> <a id="social_pinterest" class="social_active" href="#" title="Visit Vimeo"><span></span></a> </div>
+                    <div id="socialicons" class="hidden-phone">
+                        <a id="social_linkedin" class="social_active" href="#" title="Visit Google Plus page">
+                            <span></span>
+                        </a>
+                        <a id="social_facebook" class="social_active" href="#" title="Visit Facebook page">
+                            <span></span>
+                        </a>
+                        <a id="social_twitter" class="social_active" href="#" title="Visit Twitter page">
+                            <span></span>
+                        </a>
+                        <a id="social_youtube" class="social_active" href="#" title="Visit Youtube">
+                            <span></span>
+                        </a>
+                        <a id="social_vimeo" class="social_active" href="#" title="Visit Vimeo">
+                            <span></span>
+                        </a>
+                        <a id="social_trumblr" class="social_active" href="#" title="Visit Vimeo">
+                            <span></span>
+                        </a>
+                        <a id="social_google_plus" class="social_active" href="#" title="Visit Vimeo">
+                            <span></span>
+                        </a>
+                        <a id="social_dribbble" class="social_active" href="#" title="Visit Vimeo">
+                            <span></span>
+                        </a>
+                        <a id="social_pinterest" class="social_active" href="#" title="Visit Vimeo">
+                            <span></span>
+                        </a>
+                    </div>
                     <ul class="footer2-link">
-                        <li><a href="{{route('home')}}">{{trans('common.about')}}</a></li>
-                        <li><a href="{{route('home')}}">{{trans('common.cus_service')}}</a></li>
-                        <li><a href="{{route('home')}}">{{trans('common.order')}}</a></li>
+                        <li>
+                            <a href="about-us.html">{{ trans('messages.about')}}</a>
+                        </li>
+                        <li>
+                            <a href="contact.html">{{ trans('messages.customer')}}</a>
+                        </li>
+                        <li>
+                            <a href="order-recieved.html">{{ trans('messages.track')}}</a>
+                        </li>
                     </ul>
                 </section>
             </section>
@@ -132,69 +262,53 @@
         <section class="container">
             <section class="row-fluid">
                 <figure class="span4">
-                    <h4>{{trans('common.best_sellers')}}</h4>
+                    <h4>{{ trans('messages.seller')}}</h4>
                     <ul class="f2-img-list">
                         <li>
-                            <div class="left"><a href="{{route('home')}}"><img src="{!! asset('/bower_components/user/images/image19.jpg') !!}" /></a></div>
-                            <div class="right"> <strong class="title"><a href="{{route('home')}}">fields</a></strong> <span class="by-author">by Arnold Grey</span> <span class="f-price">$127.55</span> </div>
-                        </li>
-                        <li>
-                            <div class="left"><a href="{{route('home')}}"><img src="{!! asset('/bower_components/user/images/image31.jpg') !!}" /></a></div>
-                            <div class="right"> <strong class="title"><a href="{{route('home')}}">Garfield</a></strong> <span class="by-author">by Arnold Grey</span> <span class="f-price">$127.55</span> </div>
-                        </li>
-                        <li>
-                            <div class="left"><a href="{{route('home')}}"><img src="{!! asset('/bower_components/user/images/image32.jpg') !!}" /></a></div>
-                            <div class="right"> <strong class="title"><a href="{{route('home')}}">Penselviniya</a></strong> <span class="by-author">by Arnold Grey</span> <span class="f-price">$127.55</span> </div>
-                        </li>
-                        <li>
-                            <div class="left"><a href="{{route('home')}}"><img src="{!! asset('/bower_components/user/images/image33.jpg') !!}" /></a></div>
-                            <div class="right"> <strong class="title"><a href="{{route('home')}}">Exemption</a></strong> <span class="by-author">by Arnold Grey</span> <span class="f-price">$127.55</span> </div>
-                        </li>
-                        <li>
-                            <div class="left"><a href="{{route('home')}}"><img src="{!! asset('/bower_components/user/images/image34.jpg') !!}" /></a></div>
-                            <div class="right"> <strong class="title"><a href="{{route('home')}}">Penfield</a></strong> <span class="by-author">by Arnold Grey</span> <span class="f-price">$127.55</span> </div>
-                        </li>
-                        <li>
-                            <div class="left"><a href="{{route('home')}}"><img src="{!! asset('/bower_components/user/images/image32.jpg') !!}" /></a></div>
-                            <div class="right"> <strong class="title"><a href="{{route('home')}}">Doors</a></strong> <span class="by-author">by Arnold Grey</span> <span class="f-price">$127.55</span> </div>
+                            <div class="left">
+                                <a href="book-detail.html">
+                                    <img src="{{ asset('/bower_components/user/images/image19.jpg')}}" />
+                                </a>
+                            </div>
+                            <div class="right">
+                                <strong class="title">
+                                    <a href="book-detail.html">abc xyz</a>
+                                </strong>
+                                    <span class="by-author"> b ABC XYZ</span>
+                                    <span class="f-price">$127.55</span>
+                            </div>
                         </li>
                     </ul>
                 </figure>
                 <figure class="span4">
-                    <h4>{{trans('common.top_rate_books')}}</h4>
+                    <h4>{{ trans('messages.rate')}}</h4>
                     <ul class="f2-img-list">
                         <li>
-                            <div class="left"><a href="{{route('home')}}"><img src="{!! asset('/bower_components/user/images/image35.jpg') !!}" alt=""/></a></div>
-                            <div class="right"> <strong class="title"><a href="{{route('home')}}">A little rain</a></strong> <span class="by-author">by Arnold Grey</span> <span class="rating-bar"><img src="{!! asset('/bower_components/user/images/rating-star.png') !!}" alt="Rating Star"/></span> </div>
-                        </li>
-                        <li>
-                            <div class="left"><a href="{{route('home')}}"><img src="{!! asset('/bower_components/user/images/image33.jpg') !!}" alt="" /></a></div>
-                            <div class="right"> <strong class="title"><a href="{{route('home')}}">Son of Arabia</a></strong> <span class="by-author">by Arnold Grey</span> <span class="rating-bar"><img src="{!! asset('/bower_components/user/images/rating-star.png') !!}" alt="Rating Star"/></span> </div>
-                        </li>
-                        <li>
-                            <div class="left"><a href="{{route('home')}}"><img src="{!! asset('/bower_components/user/images/image32.jpg') !!}" alt="" /></a></div>
-                            <div class="right"> <strong class="title"><a href="{{route('home')}}">Serpents</a></strong> <span class="by-author">by Arnold Grey</span> <span class="rating-bar"><img src="{!! asset('/bower_components/user/images/rating-star.png') !!}" alt="Rating Star"/></span> </div>
-                        </li>
-                        <li>
-                            <div class="left"><a href="{{route('home')}}"><img src="{!! asset('/bower_components/user/images/image34.jpg') !!}" alt="" /></a></div>
-                            <div class="right"> <strong class="title"><a href="{{route('home')}}">Guns</a></strong> <span class="by-author">by Arnold Grey</span> <span class="rating-bar"><img src="{!! asset('/bower_components/user/images/rating-star.png') !!}" alt="Rating Star"/></span> </div>
-                        </li>
-                        <li>
-                            <div class="left"><a href="{{route('home')}}"><img src="{!! asset('/bower_components/user/images/image19.jpg') !!}" alt=""/></a></div>
-                            <div class="right"> <strong class="title"><a href="{{route('home')}}">Garfield</a></strong> <span class="by-author">by Arnold Grey</span> <span class="rating-bar"><img src="{!! asset('/bower_components/user/images/rating-star.png') !!}" alt="Rating Star"/></span> </div>
-                        </li>
-                        <li>
-                            <div class="left"><a href="{{route('home')}}"><img src="{!! asset('/bower_components/user/images/image35.jpg') !!}" alt="" /></a></div>
-                            <div class="right"> <strong class="title"><a href="{{route('home')}}">Wolfman</a></strong> <span class="by-author">by Arnold Grey</span> <span class="rating-bar"><img src="{!! asset('/bower_components/user/images/rating-star.png') !!}" alt="Rating Star"/></span> </div>
+                            <div class="left">
+                                <a href="book-detail.html">
+                                    <img src="{{ asset('/bower_components/user/images/image35.jpg')}}" alt=""/>
+                                </a>
+                            </div>
+                            <div class="right">
+                                <strong class="title">
+                                    <a href="book-detail.html">abc xyz</a>
+                                </strong>
+                                <span class="by-author">b ABC XYZ</span>
+                                <span class="rating-bar">
+                                    <img src="{{ asset('/bower_components/user/images/rating-star.png')}}" alt="Rating Star"/>
+                                </span>
+                            </div>
                         </li>
                     </ul>
                 </figure>
                 <figure class="span4">
-                    <h4>{{trans('common.from_blog')}}</h4>
+                    <h4>{{ trans('messages.blog')}}</h4>
                     <ul class="f2-pots-list">
-                        <li> <span class="post-date2">28 APR</span> <a href="{{route('home')}}">{{trans('common.blogdes')}}</a> <span class="comments-num">6 comments</span> </li>
-                        <li> <span class="post-date2">28 APR</span> <a href="{{route('home')}}">{{trans('common.blogdes')}}</a> <span class="comments-num">6 comments</span> </li>
-                        <li> <span class="post-date2">28 APR</span> <a href="{{route('home')}}">{{trans('common.blogdes')}}</a> <span class="comments-num">6 {{trans('common.comment')}}</span> </li>
+                        <li>
+                            <span class="post-date2">28 APR</span>
+                                <a href="blog-detail.html">abcxyz...</a>
+                            <span class="comments-num">6 cm</span>
+                        </li>
                     </ul>
                 </figure>
             </section>
@@ -207,10 +321,10 @@
             <section class="container">
                 <section class="row-fluid">
                     <article class="span6">
-                        <p>{{trans('common.home_footer')}}</p>
+                        <p>© 2018  Book Store - Premium WooCommerce Theme. </p>
                     </article>
                     <article class="span6 copy-right">
-                        <p>Designed by <a href="{{route('home')}}">Crunchpress.com</a></p>
+                        <p>Designed by <a href="http://www.crunchpress.com/">Crunchpress.com</a></p>
                     </article>
                 </section>
             </section>
@@ -232,18 +346,17 @@
     <script type="text/javascript" src="{!! asset('/bower_components/user/js/custom.js') !!}"></script><!-- Custom js -->
     <script type="text/javascript" src="{!! asset('/bower_components/user/js/social.js') !!}"></script><!-- Social Icons -->
     <!-- JS Files End -->
-    <noscript>
-    <style>
-      #socialicons>a span { top: 0px; left: -100%; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease-in-out; -o-transition: all 0.3s ease-in-out; -ms-transition: all 0.3s ease-in-out; transition: all 0.3s  ease-in-out;}
-      #socialicons>ahover div{left: 0px;}
-      </style>
-    </noscript>
     <script type="text/javascript">
-      /* <![CDATA[ */
-      $(document).ready(function() {
-      $('.social_active').hoverdir( {} );
-    })
-    /* ]]> */
+        /* <![CDATA[ */
+        $(document).ready(function() {
+            $('.social_active').hoverdir( {} );   
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        })
+        /* ]]> */
     </script>
 </body>
 </html>

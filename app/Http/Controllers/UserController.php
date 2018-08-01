@@ -15,7 +15,12 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+        
+<<<<<<< HEAD
+        return view('admin.user.show' , compact('users'));
+=======
         return view('admin.user.show' , ['users' => $users]);
+>>>>>>> b6fc88ce62c28db285ee7bddaaddb8d9dd466acb
     }
 
     /**
@@ -58,7 +63,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::where('id', $id)->first();
+
+        return view('admin.user.edit' , compact('user'));
     }
 
     /**
@@ -70,7 +77,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        unset($data['_method']);
+        
+        unset($data['_token']);
+
+        User::where('id' , $id)->update($data);
+
+        return json_encode(array(
+            'error' => 0,
+        ));
     }
 
     /**
@@ -81,6 +98,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::where('id' ,$id)->delete();
+
+        return json_encode(array(
+            'error' => 0
+        ));
     }
 }

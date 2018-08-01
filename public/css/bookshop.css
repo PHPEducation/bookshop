@@ -1,22 +1,33 @@
-/** Admin Ccs **/
 
-.progress-bar{
-	width : 40%;
-}
+	body *{
+		font-family: 'Roboto', sans-serif;
+	}
+	.progress-bar{
+		width : 40%;
+	}
 
-.list-inline .siteA{
-	color: #dadada;
-}
+	.list-inline .siteA{
+		color: #dadada;
+	}
 
-.list-inline .siteB{
-	color: #aec9cb;
-}
+	.list-inline .siteB{
+		color: #aec9cb;
+	}
 
-#morris-area-chart2{
-	height: 370px;
-}
+	#morris-area-chart2{
+		height: 370px;
+	}
 
-#side-menu li:first-child{
-	padding: 10px 0 0;
-}
+	#side-menu li:first-child{
+		padding: 10px 0 0;
+	}
+	.y-scroller{
+		overflow-x: auto;
+	}
+	.btn{
+		border-radius: 5px;
+	}
+	#page-wrapper{
+		background: #ffffff;
+	}
 /** End Admin Css **/
