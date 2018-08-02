@@ -7,6 +7,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <meta name="viewport" content="width=device-width">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Css Files Start -->
         <link href="{!! asset('/bower_components/user/css/style.css') !!}" rel="stylesheet" type="text/css" /><!-- All css -->  
         <link href="{!! asset('/bower_components/user/css/bs.css') !!}" rel="stylesheet" type="text/css" /><!-- Bootstrap Css -->
@@ -352,12 +353,18 @@
     <script type="text/javascript" src="{!! asset('/js/jquery-3.3.1.min.js') !!}"></script>
     <!-- JS Files End -->
     <script type="text/javascript">
-      /* <![CDATA[ */
-      $(document).ready(function() {
-      $('.social_active').hoverdir( {} );
-      $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd'});
-    })
-    /* ]]> */
+        /* <![CDATA[ */
+        $(document).ready(function() {
+            $('.social_active').hoverdir( {} );
+            $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd'});
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd'});
+        })
+        /* ]]> */
     </script>
 </body>
 </html>

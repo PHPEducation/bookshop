@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/bower_components/admin/plugins/images/favicon.png')}}">
     <title>{{ trans('messages.dashboard') }}</title>
     <!-- Bootstrap Core CSS -->
@@ -23,6 +24,32 @@
     <link href="{!! asset('/bower_components/admin/css/style.css') !!}" rel="stylesheet">
     <!-- color CSS -->
     <link href="{!! asset('/bower_components/admin/css/colors/blue-dark.css') !!}" id="theme" rel="stylesheet">
+    <!-- bootstrap Modal -->
+    <link rel="stylesheet" type="text/css" href="{!! asset('/bower_components/bootstrap-modal/css/bootstrap-modal.css') !!}">
+    <link rel="stylesheet" type="text/css" href="{!! asset('/css/bookshop.css') !!}">
+    <link href="{!! asset('/css/fonts.css?family=Roboto&amp;subset=vietnamese') !!}" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="{!! asset('/bower_components/admin/plugins/bower_components/jquery/dist/jquery.min.js') !!}"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{!! asset('/bower_components/admin/bootstrap/dist/js/bootstrap.min.js') !!}"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="{!! asset('/bower_components/admin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js') !!}"></script>
+    <!--slimscroll JavaScript -->
+    <script src="{!! asset('/bower_components/admin/js/jquery.slimscroll.js') !!}"></script>
+    <!--Wave Effects -->
+    <script src="{!! asset('/bower_components/admin/js/waves.js') !!}"></script>
+    <!--Counter js -->
+    <script src="{!! asset('/bower_components/admin/plugins/bower_components/waypoints/lib/jquery.waypoints.js') !!}"></script>
+    <script src="{!! asset('/bower_components/admin/plugins/bower_components/counterup/jquery.counterup.min.js') !!}"></script>
+    <!--Morris JavaScript -->
+    <script src="{!! asset('/bower_components/admin/plugins/bower_components/raphael/raphael-min.js') !!}"></script>
+    <script src="{!! asset('/bower_components/admin/plugins/bower_components/morrisjs/morris.js') !!}"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="{!! asset('/bower_components/admin/js/custom.min.js') !!}"></script>
+    <script src="{!! asset('/bower_components/admin/js/dashboard1.js') !!}"></script>
+    <script src="{!! asset('/bower_components/admin/plugins/bower_components/toast-master/js/jquery.toast.js') !!}"></script>
+    <script type="text/javascript" src="{!! asset('/bower_components/bootstrap-modal/js/bootstrap-modal.js') !!}"></script>
+    <script type="text/javascript" src="{!! asset('/bower_components/bootstrap-modal/js/bootstrap-modalmanager.js') !!}"></script>
     <link rel="stylesheet" type="text/css" href="{!! asset('/css/bookshop.css') !!}">
 </head>
 
@@ -124,37 +151,13 @@
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
-    <!-- jQuery -->
-    <script src="{!! asset('/bower_components/admin/plugins/bower_components/jquery/dist/jquery.min.js') !!}"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{!! asset('/bower_components/admin/bootstrap/dist/js/bootstrap.min.js') !!}"></script>
-    <!-- Menu Plugin JavaScript -->
-    <script src="{!! asset('/bower_components/admin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js') !!}"></script>
-    <!--slimscroll JavaScript -->
-    <script src="{!! asset('/bower_components/admin/js/jquery.slimscroll.js') !!}"></script>
-    <!--Wave Effects -->
-    <script src="{!! asset('/bower_components/admin/js/waves.js') !!}"></script>
-    <!--Counter js -->
-    <script src="{!! asset('/bower_components/admin/plugins/bower_components/waypoints/lib/jquery.waypoints.js') !!}"></script>
-    <script src="{!! asset('/bower_components/admin/plugins/bower_components/counterup/jquery.counterup.min.js') !!}"></script>
-    <!--Morris JavaScript -->
-    <script src="{!! asset('/bower_components/admin/plugins/bower_components/raphael/raphael-min.js') !!}"></script>
-    <script src="{!! asset('/bower_components/admin/plugins/bower_components/morrisjs/morris.js') !!}"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="{!! asset('/bower_components/admin/js/custom.min.js') !!}"></script>
-    <script src="{!! asset('/bower_components/admin/js/dashboard1.js') !!}"></script>
-    <script src="{!! asset('/bower_components/admin/plugins/bower_components/toast-master/js/jquery.toast.js') !!}"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        $.toast({
-            heading: 'Welcome to Pixel admin',
-            text: 'Use the predefined ones, or specify a custom position object.',
-            position: 'top-right',
-            loaderBg: '#ff6849',
-            icon: 'info',
-            hideAfter: 3500,
-            stack: 6
-        })
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
     });
     </script>
 </body>

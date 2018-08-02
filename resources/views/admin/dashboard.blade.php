@@ -69,5 +69,4 @@
     <!-- /.col -->
 </div>
 <!-- /.row -->
-<!--row -->
 @endsection
