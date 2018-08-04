@@ -28,3 +28,4 @@ Route::group(['prefix' => 'users', 'middleware' => 'checkUsers'], function(){
 	Route::get('/edit/{id?}', 'UsersController@edit');
 	Route::post('/edit/{id?}', 'UsersController@update');
 });
+Route::get('/sale', 'SaleController@index');
