@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class checkUsers
 {
@@ -17,10 +18,17 @@ class checkUsers
     public function handle($request, Closure $next)
     {
         if(Auth::check())
-        {
-            return $next($request);
-        }
-        else
+        {   
+            $edit_users = User::findOrFail( $request->route()->parameters()['id'] );
+            $users = Auth::user();
+            if($users == $edit_users)
+            {
+                return $next($request);
+            } else {
+                return redirect('/');
+            }
+        } else {
             return redirect( 'register' );
+        }
     }
 }
