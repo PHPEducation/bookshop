@@ -24,6 +24,28 @@
     <!-- color CSS -->
     <link href="{!! asset('/bower_components/admin/css/colors/blue-dark.css') !!}" id="theme" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{!! asset('/css/bookshop.css') !!}">
+    <link href="{!! asset('bower_components/select2/dist/css/select2.min.css') !!}" rel="stylesheet" />
+
+    <script src="{!! asset('/bower_components/admin/plugins/bower_components/jquery/dist/jquery.min.js') !!}"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{!! asset('/bower_components/admin/bootstrap/dist/js/bootstrap.min.js') !!}"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="{!! asset('/bower_components/admin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js') !!}"></script>
+    <!--slimscroll JavaScript -->
+    <script src="{!! asset('/bower_components/admin/js/jquery.slimscroll.js') !!}"></script>
+    <!--Wave Effects -->
+    <script src="{!! asset('/bower_components/admin/js/waves.js') !!}"></script>
+    <!--Counter js -->
+    <script src="{!! asset('/bower_components/select2/dist/js/select2.min.js') !!}"></script>
+    <script src="{!! asset('/bower_components/admin/plugins/bower_components/waypoints/lib/jquery.waypoints.js') !!}"></script>
+    <script src="{!! asset('/bower_components/admin/plugins/bower_components/counterup/jquery.counterup.min.js') !!}"></script>
+    <!--Morris JavaScript -->
+    <script src="{!! asset('/bower_components/admin/plugins/bower_components/raphael/raphael-min.js') !!}"></script>
+    <script src="{!! asset('/bower_components/admin/plugins/bower_components/morrisjs/morris.js') !!}"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="{!! asset('/bower_components/admin/js/custom.min.js') !!}"></script>
+    <script src="{!! asset('/bower_components/admin/js/dashboard1.js') !!}"></script>
+    <script src="{!! asset('/bower_components/admin/plugins/bower_components/toast-master/js/jquery.toast.js') !!}"></script>
 </head>
 
 <body>
@@ -64,25 +86,13 @@
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="#" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i><span class="hide-menu">{{ trans('messages.dashboard')}}</span></a>
+                        <a href="{{ route('users.index') }}" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i><span class="hide-menu">{{ trans('common.user')}}</span></a>
                     </li>
                     <li>
-                        <a href="#" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i><span class="hide-menu">{{ trans('messages.profile')}}</span></a>
+                        <a href="{{ route('books.index') }}" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i><span class="hide-menu">{{ trans('common.book')}}</span></a>
                     </li>
                     <li>
-                        <a href="#" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i><span class="hide-menu">{{ trans('messages.basic')}}</span></a>
-                    </li>
-                    <li>
-                        <a href="#" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i><span class="hide-menu">{{ trans('messages.icon')}}</span></a>
-                    </li>
-                    <li>
-                        <a href="#" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i><span class="hide-menu">{{ trans('messages.map')}}</span></a>
-                    </li>
-                    <li>
-                        <a href="#" class="waves-effect"><i class="fa fa-columns fa-fw" aria-hidden="true"></i><span class="hide-menu">{{ trans('messages.blank')}}</span></a>
-                    </li>
-                    <li>
-                        <a href="#" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i><span class="hide-menu">{{ trans('messages.error')}}</span></a>
+                        <a href="{{ route('categories.index') }}" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i><span class="hide-menu">{{ trans('common.category')}}</span></a>
                     </li>
                 </ul>
                 <div class="center p-20">
@@ -97,25 +107,7 @@
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
-                <div class="row bg-title">
-                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">@yield('title')</h4>
-                    </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <a href="#" target="_blank" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">{{ trans('messages.upgrade')}}
-                        </a>
-                        <ol class="breadcrumb">
-                            <li>
-                                <a href="#">@yield('title')</a>
-                            </li>
-                        </ol>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- row -->
-                <div class="row">
-                    @yield('content')
-                </div>
+                @yield('content')
             </div>
             <!-- /.container-fluid -->
             <footer class="footer text-center"> 2017 &copy; Pixel Admin brought to you by wrappixel.com </footer>
@@ -125,37 +117,5 @@
     </div>
     <!-- /#wrapper -->
     <!-- jQuery -->
-    <script src="{!! asset('/bower_components/admin/plugins/bower_components/jquery/dist/jquery.min.js') !!}"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{!! asset('/bower_components/admin/bootstrap/dist/js/bootstrap.min.js') !!}"></script>
-    <!-- Menu Plugin JavaScript -->
-    <script src="{!! asset('/bower_components/admin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js') !!}"></script>
-    <!--slimscroll JavaScript -->
-    <script src="{!! asset('/bower_components/admin/js/jquery.slimscroll.js') !!}"></script>
-    <!--Wave Effects -->
-    <script src="{!! asset('/bower_components/admin/js/waves.js') !!}"></script>
-    <!--Counter js -->
-    <script src="{!! asset('/bower_components/admin/plugins/bower_components/waypoints/lib/jquery.waypoints.js') !!}"></script>
-    <script src="{!! asset('/bower_components/admin/plugins/bower_components/counterup/jquery.counterup.min.js') !!}"></script>
-    <!--Morris JavaScript -->
-    <script src="{!! asset('/bower_components/admin/plugins/bower_components/raphael/raphael-min.js') !!}"></script>
-    <script src="{!! asset('/bower_components/admin/plugins/bower_components/morrisjs/morris.js') !!}"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="{!! asset('/bower_components/admin/js/custom.min.js') !!}"></script>
-    <script src="{!! asset('/bower_components/admin/js/dashboard1.js') !!}"></script>
-    <script src="{!! asset('/bower_components/admin/plugins/bower_components/toast-master/js/jquery.toast.js') !!}"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $.toast({
-            heading: 'Welcome to Pixel admin',
-            text: 'Use the predefined ones, or specify a custom position object.',
-            position: 'top-right',
-            loaderBg: '#ff6849',
-            icon: 'info',
-            hideAfter: 3500,
-            stack: 6
-        })
-    });
-    </script>
 </body>
 </html>
