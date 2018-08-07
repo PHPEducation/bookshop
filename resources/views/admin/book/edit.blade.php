@@ -47,11 +47,11 @@
         </div>
         <div class="form-group">
             {!! Form::label('publisher', trans('common.publisher')) !!}
-            {!! Form::select('publisher_id', $publisher_list, $book->publisher_id, ['class' => 'form-control , select2']) !!}
+            {!! Form::select('publisher_id', $publisher_list, $book->publisher_id, ['class' => 'form-control , select2_item']) !!}
         </div>
         <div class="form-group">
             {!! Form::label('promotion', trans('common.promotion')) !!}
-            {!! Form::select('promotion_id', $promotion_list, $book->promotion_id, ['class' => 'form-control , select2']) !!}
+            {!! Form::select('promotion_id', $promotion_list, $book->promotion_id, ['class' => 'form-control , select2_item']) !!}
         </div>
         <div class="form-group">
             {!! Form::label('image', trans('common.image')) !!}
@@ -65,23 +65,23 @@
     </div>
     <script type="text/javascript">
         $(function () {
-            $('#edit_form').submit(function (e) {
-                e.preventDefault();
-                var form = $(this);
-                var formData = new FormData(this);
-                var btn = form.find('.btn');
-                $.ajax({
-                    url : form.attr('action'),
-                    type : 'PUT',
-                    dataType : 'json',
-                    data : formData,
-                    contentType: false,
-                    processData: false,
-                    beforeSend : function() {
-                        btn.prop('disabled', true);
-                    },
-                    success : function(msg) {
-                        if (msg.error == 0) {
+            {{--$('#edit_form').submit(function (e) {--}}
+                {{--e.preventDefault();--}}
+                {{--var form = $(this);--}}
+                {{--var formData = new FormData(this);--}}
+                {{--var btn = form.find('.btn');--}}
+                {{--$.ajax({--}}
+                    {{--url : form.attr('action'),--}}
+                    {{--type : 'PUT',--}}
+                    {{--dataType : 'json',--}}
+                    {{--data : formData,--}}
+                    {{--contentType: false,--}}
+                    {{--processData: false,--}}
+                    {{--beforeSend : function() {--}}
+                        {{--btn.prop('disabled', true);--}}
+                    {{--},--}}
+                    {{--success : function(msg) {--}}
+                        {{--if (msg.error == 0) {--}}
                             {{--$.toast({--}}
                                 {{--heading: '{{ trans('common.success') }}',--}}
                                 {{--text: '{{ trans('common.success') }}',--}}
@@ -94,22 +94,45 @@
                             {{--setTimeout(function() {--}}
                                 {{--window.location.href='{{ route('books.index') }}';--}}
                             {{--} , 2000);--}}
-                            console.log(msg.data);
-                        }
+                        {{--}--}}
+                    {{--},--}}
+                    {{--error : function() {--}}
+                        {{--console.log('{{ trans('common.error') }}');--}}
+                    {{--},--}}
+                    {{--complete : function() {--}}
+                        {{--btn.prop('disabled', false);--}}
+                    {{--},--}}
+                {{--})--}}
+            {{--});--}}
+
+            $('#edit_form').validate({
+                rules : {
+                    name : {
+                        required : true,
+                        minlength : 6,
                     },
-                    error : function() {
-                        console.log('{{ trans('common.error') }}');
+                    quantity : {
+                        required : true,
+                        number : true,
                     },
-                    complete : function() {
-                        btn.prop('disabled', false);
+                    price : {
+                        required : true,
+                        number : true,
                     },
-                })
+                    author : "required",
+                    summary : "required",
+                    content : "required",
+                }
             });
 
             $('.select2_munti').select2({
                 multiple : true,
                 placeholder : '{{ trans('common.select2') }}',
             });
+
+            $('.select2_item').select2();
+
+
         })
     </script>
 @endsection

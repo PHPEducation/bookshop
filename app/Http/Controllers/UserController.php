@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
@@ -70,7 +71,9 @@ class UserController extends Controller
 
         $user->address = $data['address'];
 
-        $user->birthday = $data['birthday'];
+        $birthday = date_create($data['birthday']);
+
+        $user->birthday = date_format($birthday, 'Y-m-d');
 
         $user->role = $data['role'];
 
@@ -78,6 +81,7 @@ class UserController extends Controller
 
         echo json_encode([
             'error' => 0,
+            'birthday' => $user->birthday
         ]);
     }
 
@@ -120,10 +124,15 @@ class UserController extends Controller
         
         unset($data['_token']);
 
+        $birthday = date_create($data['birthday']);
+
+        $data['birthday'] = date_format($birthday, 'Y-m-d');
+
         User::where('id', $id)->update($data);
 
         return json_encode([
             'error' => 0,
+            'birthday' => $data['birthday']
         ]);
     }
 

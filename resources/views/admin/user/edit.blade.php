@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 {!! Form::label('birthday', trans('common.birthday')) !!}
-                {!! Form::date('birthday', $user['birthday'], ['class' => 'form-control']) !!}
+                {!! Form::text('birthday', date_format(date_create($user['birthday']), 'd-m-Y'), ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('address', trans('common.address')) !!}
@@ -43,7 +43,7 @@
             </div>
             <div class="form-group">
                 {!! Form::label('role', trans('common.role')) !!}
-                {!! Form::select('role', [1 => 'Staff', 2 => 'Admin'], $user->role, ['class' => 'form-control , select2']) !!}
+                {!! Form::select('role', ['Customer', 'Staff', 'Admin'], $user->role, ['class' => 'form-control , select2']) !!}
             </div>
             <div class="form-group">
                 {!! Form::submit(trans('common.update') . '!', ['class' => 'btn btn-primary ']) !!}
@@ -51,42 +51,72 @@
         {!! Form::close() !!}
     </div>
     <script type="text/javascript">
-        $('#edit_form').submit(function(e) {
-            e.preventDefault();
-            var form = $(this);
-            var btn = form.find('.btn');
-            $.ajax({
-                url : form.attr('action'),
-                type : 'PUT',
-                dataType : 'json',
-                data : form.serialize(),
-                beforeSend : function() {
-                    btn.prop('disabled', true);
+        $(function ()
+        {
+            $('#edit_form').validate({
+                rules : {
+                    name : {
+                        required : true,
+                        minlength : 4,
+                    },
+                    email : {
+                        required : true,
+                        email : true,
+                    },
+                    username : {
+                        required : true,
+                        minlength : 6,
+                    },
+                    birthday : "required",
+                    address : "required",
+                    phone : {
+                        required : true,
+                        number : true,
+                    },
                 },
-                success : function(msg) {
-                    if (msg.error == 0) {
-                        $.toast({
-                            heading: '{{ trans('common.success') }}',
-                            text: '{{ trans('common.success') }}',
-                            position: 'top-right',
-                            loaderBg: '#ff6849',
-                            icon: 'info',
-                            hideAfter: 2000,
-                            stack: 6,
-                        });
-                        setTimeout(function() {
-                            window.location.href = '{{ route('users.index') }}';
-                        }, 2000);
-                    }
-                },
-                error : function() {
-                    console.log('{{ trans('common.error') }}');
-                },
-                complete : function() {
-                    btn.prop('disabled', false);
-                },
-            })
-        });
-        $('.select2').select2();
+                submitHandler: function(form , e) {
+                    e.preventDefault();
+                    var form = $(form);
+                    var btn = form.find('.btn');
+                    $.ajax({
+                        url : form.attr('action'),
+                        type : 'PUT',
+                        dataType : 'json',
+                        data : form.serialize(),
+                        beforeSend : function() {
+                            btn.prop('disabled', true);
+                        },
+                        success : function(msg) {
+                            if (msg.error == 0) {
+                                $.toast({
+                                    heading: '{{ trans('common.success') }}',
+                                    text: '{{ trans('common.success') }}',
+                                    position: 'top-right',
+                                    loaderBg: '#ff6849',
+                                    icon: 'info',
+                                    hideAfter: 2000,
+                                    stack: 6,
+                                });
+                                setTimeout(function() {
+                                    window.location.href = '{{ route('users.index') }}';
+                                }, 2000);
+                            }
+                        },
+                        error : function() {
+                            console.log('{{ trans('common.error') }}');
+                        },
+                        complete : function() {
+                            btn.prop('disabled', false);
+                        },
+                    })
+                }
+            });
+
+            $('#birthday').datetimepicker({
+                format: 'DD-MM-YYYY'
+            });
+
+            $('.select2').select2();
+        })
     </script>
 @endsection

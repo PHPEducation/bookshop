@@ -34,8 +34,12 @@
                 {!! Form::password('password' , ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
+                {!! Form::label('confirm_password', trans('common.confirm_password')) !!}
+                {!! Form::password('confirm_password' , ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
                 {!! Form::label('birthday', trans('common.birthday')) !!}
-                {!! Form::date('birthday' , '' , ['class' => 'form-control']) !!}
+                {!! Form::text('birthday' , '' , ['class' => 'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('address', trans('common.address')) !!}
@@ -55,42 +59,78 @@
         {!! Form::close() !!}
     </div>
 	<script type="text/javascript">
-		$('#add_form').submit(function(e){
-			e.preventDefault();
-			var form = $(this);
-			var btn = form.find('.btn');
-			$.ajax({
-				url : form.attr('action'),
-				type : 'POST',
-				dataType : 'json',
-				data : form.serialize(),
-				beforeSend : function(){
-					btn.prop('disabled' , true);
-				},
-				success : function(msg){
-					if(msg.error == 0){
-						$.toast({
-					        heading: '{{trans('common.success')}}',
-					        text: '{{trans('common.success')}}',
-					        position: 'top-right',
-					        loaderBg: '#ff6849',
-					        icon: 'info',
-					        hideAfter: 2000,
-					        stack: 6
-					    });
-					    setTimeout(function(){
-					    	window.location.href='{{route('users.index')}}';
-					    } , 2000);
-					}
-				},
-				error : function(){
-					console.log('{{trans('common.error')}}');
-				},
-				complete : function(){
-					btn.prop('disabled' , false);
-				},
-			})
-		});
+        $(function(){
+            $('#add_form').validate({
+                rules : {
+                    name : {
+                        required : true,
+                        minlength : 4,
+                    },
+                    email : {
+                        required : true,
+                        email : true,
+                    },
+                    username : {
+                        required : true,
+                        minlength : 6,
+                    },
+                    password : {
+                        required : true,
+                        minlength : 8,
+                    },
+                    confirm_password : {
+                        required : true,
+                        minlength : 8,
+                        equalTo : '#password',
+                    },
+                    birthday : "required",
+                    address : "required",
+                    phone : {
+                        required : true,
+                        number : true,
+                    },
+                },
+                submitHandler: function(form , e) {
+                    e.preventDefault();
+                    var form = $(form);
+                    var btn = form.find('.btn');
+                    $.ajax({
+                        url : form.attr('action'),
+                        type : 'POST',
+                        dataType : 'json',
+                        data : form.serialize(),
+                        beforeSend : function(){
+                            btn.prop('disabled' , true);
+                        },
+                        success : function(msg){
+                            if(msg.error == 0){
+                                $.toast({
+                                    heading: '{{trans('common.success')}}',
+                                    text: '{{trans('common.success')}}',
+                                    position: 'top-right',
+                                    loaderBg: '#ff6849',
+                                    icon: 'info',
+                                    hideAfter: 2000,
+                                    stack: 6
+                                });
+                                setTimeout(function(){
+                                    window.location.href='{{route('users.index')}}';
+                                } , 2000);
+                            }
+                        },
+                        error : function(){
+                            console.log('{{trans('common.error')}}');
+                        },
+                        complete : function(){
+                            btn.prop('disabled' , false);
+                        },
+                    })
+                }
+            });
 
+            $('#birthday').datetimepicker({
+                format: 'DD-MM-YYYY'
+            });
+        })
 	</script>
 @endsection

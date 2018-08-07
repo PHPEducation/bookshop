@@ -47,11 +47,11 @@
             </div>
             <div class="form-group">
                 {!! Form::label('publisher', trans('common.category')) !!}
-                {!! Form::select('publisher', $publisher_list, null, ['class' => 'form-control , select2']) !!}
+                {!! Form::select('publisher', $publisher_list, null, ['class' => 'form-control , select2_item']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('promotion', trans('common.category')) !!}
-                {!! Form::select('promotion', $promotion_list, null, ['class' => 'form-control , select2']) !!}
+                {!! Form::select('promotion', $promotion_list, null, ['class' => 'form-control , select2_item']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('image', trans('common.image')) !!}
@@ -63,51 +63,72 @@
         {!! Form::close() !!}
     </div>
 	<script type="text/javascript">
-		$(function () {
-            $('#add_form').submit(function (e) {
-                e.preventDefault();
-                var form = $(this);
-                var formData = new FormData(this);
-                var btn = form.find('.btn');
-                $.ajax({
-                    url : form.attr('action'),
-                    type : 'POST',
-                    dataType : 'json',
-                    data : formData,
-                    contentType: false,
-                    processData: false,
-                    beforeSend : function() {
-                        btn.prop('disabled', true);
+        $(function(){
+            $('#add_form').validate({
+                rules : {
+                    name : {
+                        required : true,
+                        minlength : 6,
                     },
-                    success : function(msg) {
-                        if (msg.error == 0) {
-                            $.toast({
-                                heading: '{{ trans('common.success') }}',
-                                text: '{{ trans('common.success') }}',
-                                position: 'top-right',
-                                loaderBg: '#ff6849',
-                                icon: 'info',
-                                hideAfter: 2000,
-                                stack: 6
-                            });
-                            setTimeout(function() {
-                                window.location.href='{{ route('books.index') }}';
-                            } , 2000);
-                        }
+                    quantity : {
+                        required : true,
+                        number : true,
                     },
-                    error : function() {
-                        console.log('{{ trans('common.error') }}');
+                    price : {
+                        required : true,
+                        number : true,
                     },
-                    complete : function() {
-                        btn.prop('disabled', false);
-                    },
-                })
+                    author : "required",
+                    summary : "required",
+                    content : "required",
+                },
+                submitHandler: function(form , e) {
+                    e.preventDefault();
+                    var formData = new FormData(form);
+                    var form = $(form);
+                    var btn = form.find('.btn');
+                    $.ajax({
+                        url : form.attr('action'),
+                        type : 'POST',
+                        dataType : 'json',
+                        data : formData,
+                        contentType: false,
+                        processData: false,
+                        beforeSend : function() {
+                            btn.prop('disabled', true);
+                        },
+                        success : function(msg) {
+                            if (msg.error == 0) {
+                                $.toast({
+                                    heading: '{{ trans('common.success') }}',
+                                    text: '{{ trans('common.success') }}',
+                                    position: 'top-right',
+                                    loaderBg: '#ff6849',
+                                    icon: 'info',
+                                    hideAfter: 2000,
+                                    stack: 6
+                                });
+                                setTimeout(function() {
+                                    window.location.href='{{ route('books.index') }}';
+                                } , 2000);
+                            }
+                        },
+                        error : function() {
+                            console.log('{{ trans('common.error') }}');
+                        },
+                        complete : function() {
+                            btn.prop('disabled', false);
+                        },
+                    })
+                }
             });
 
             $('.select2_munti').select2({
                 multiple : true,
                 placeholder : '{{ trans('common.select2') }}',
             });
+
+            $('.select2_item').select2();
         })
 	</script>
 @endsection

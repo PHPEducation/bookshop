@@ -75,4 +75,6 @@ return [
     'user_show' => 'Danh sách người dùng',
     'user_add' => 'Thêm mới người dùng',
     'user_edit' => 'Chỉnh sửa thông tin người dùng',
+    'close' => 'Đóng',
+    'confirm_password' => 'Xác nhận mật khẩu',
 ];

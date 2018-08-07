@@ -17,3 +17,7 @@
     #side-menu li:first-child{
         padding: 10px 0 0;
     }
+    .error{
+        font-size : 18px;
+        color : #793e3e;
+    }

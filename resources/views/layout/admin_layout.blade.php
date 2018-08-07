@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/bower_components/admin/plugins/images/favicon.png')}}">
     <title>{{ trans('messages.dashboard') }}</title>
     <!-- Bootstrap Core CSS -->
@@ -25,7 +26,9 @@
     <link href="{!! asset('/bower_components/admin/css/colors/blue-dark.css') !!}" id="theme" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{!! asset('/css/bookshop.css') !!}">
     <link href="{!! asset('bower_components/select2/dist/css/select2.min.css') !!}" rel="stylesheet" />
+    <link rel="stylesheet" href="{!! asset('/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') !!}" />
 
+    <script type="text/javascript" src="{!! asset('/bower_components/jquery/dist/jquery.min.js') !!}"></script>
     <script src="{!! asset('/bower_components/admin/plugins/bower_components/jquery/dist/jquery.min.js') !!}"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="{!! asset('/bower_components/admin/bootstrap/dist/js/bootstrap.min.js') !!}"></script>
@@ -46,6 +49,9 @@
     <script src="{!! asset('/bower_components/admin/js/custom.min.js') !!}"></script>
     <script src="{!! asset('/bower_components/admin/js/dashboard1.js') !!}"></script>
     <script src="{!! asset('/bower_components/admin/plugins/bower_components/toast-master/js/jquery.toast.js') !!}"></script>
+    <script type="text/javascript" src="{!! asset('/bower_components/moment/min/moment.min.js') !!}"></script>
+    <script type="text/javascript" src="{!! asset('/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') !!}"></script>
+    <script src="{!! asset('/bower_components/jquery-validation/dist/jquery.validate.min.js') !!}"></script>
 </head>
 
 <body>
@@ -117,5 +123,14 @@
     </div>
     <!-- /#wrapper -->
     <!-- jQuery -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        });
+    </script>
 </body>
 </html>
