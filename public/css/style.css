@@ -1,0 +1,22 @@
+    #socialicons>a span { 
+        top: 0px;
+        left: -100%;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+    #socialicons>ahover div {
+        left: 0px;
+    }
+    label{
+        margin-left: 20px;
+    }
+    #datepicker {
+        width:180px; 
+        margin: 0 20px 20px 20px;
+    }
+    #datepicker > span:hover {
+        cursor: pointer;
+    }
