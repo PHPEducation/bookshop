@@ -27,7 +27,11 @@
             {!! Form::text('phone', $user['phone'], ['class' => 'form-control']) !!} 
         </div>
         <div class="form-group">
-            {!! Form::submit(trans('common.update') . '!', ['class' => 'btn btn-primary ']); !!} 
+            {!! Form::label('role', trans('common.role')) !!}
+            {!! Form::select('role', [1 => 'Staff', 2 => 'Admin'], $user->role, ['class' => 'form-control , select2']) !!}
+        </div>
+        <div class="form-group">
+            {!! Form::submit(trans('common.update') . '!', ['class' => 'btn btn-primary ']) !!}
         </div>
     {!! Form::close() !!}
     <script type="text/javascript">
@@ -67,5 +71,6 @@
                 },
             })
         });
+        $('.select2').select2();
     </script>
 @endsection

@@ -64,7 +64,7 @@
                                     <button data-toggle="dropdown" class="btn btn-mini dropdown-toggle">{{ Auth::user()->name }}<span class="caret"></span></button>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="#">
+                                            <a href="{{ url( '/users/edit').'/'. Auth::user()->id }}">
                                                 {{ trans('messages.edit') }}
                                             </a>
                                         </li>
@@ -86,7 +86,7 @@
                         </li>
                     </ul>
                     <div class="c-btn">
-                        <a href="cart.html" class="cart-btn">
+                        <a href="{{ url( '/cart' ) }}" class="cart-btn">
                             {{ trans('messages.cart') }}
                         </a>
                     </div>
@@ -124,8 +124,10 @@
                         </li>
                     </ul>
                     <div class="search-bar">
-                        {{ Form::text( 'textSearch', null, [ 'placeholder' => trans('messages.search_book') ])}}
-                        {{ Form::button('Search', ['class' => 'btn btn-primary']) }}
+                    {{ Form::open(['url' => '/search', 'method' => 'get'])}}
+                        {{ Form::text('key', null, [ 'placeholder' => trans('messages.search_book') ])}}
+                        {{ Form::submit('Search', ['class' => 'btn btn-primary']) }}
+                    {{ Form::close() }}
                     </div>
                 </section>
             </section>

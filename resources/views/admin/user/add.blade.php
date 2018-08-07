@@ -30,6 +30,10 @@
 	    	{!! Form::label('phone', trans('common.phone')) !!}
 	    	{!! Form::text('phone' , '' , ['class' => 'form-control']) !!} 
 	    </div>
+        <div class="form-group">
+            {!! Form::label('role', trans('common.role')) !!}
+            {!! Form::select('role', ['Customer', 'Staff', 'Admin'], null, ['class' => 'form-control , select2']) !!}
+        </div>
 	    <div class="form-group">
 	    	{!! Form::submit(trans('common.add').'!' , ['class' => 'btn btn-primary ']); !!} 
 	    </div>

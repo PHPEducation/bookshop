@@ -1,72 +1,222 @@
 @extends('layout.admin_layout')
 @section('title', 'User')
 @section('content')
-	<div class="y-scroller">
-		<table class="table table-bordered table-hover table-responsive">
-			<thead>
-				<tr>
-					<th class="text-center">
-						{{trans('common.stt')}}
-					</th>
-					<th class="text-center">
-						{{trans('common.username')}}
-					</th>
-					<th class="text-center">
-						{{trans('common.email')}}
-					</th>
-					<th class="text-center">
-						{{trans('common.action')}}
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach($users as $user)
-				<tr>
-					<td class="text-center">
-						{{ $user['id'] }}
-					</td>
-					<td class="text-cetner">
-						{{ $user['username'] }}
-					</td>
-					<td class="text-cetner">
-						{{ $user['email'] }}
-					</td>
-					<td class="text-cetner">
-						<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal{{$user['id']}}">{{trans('common.detail')}}</button>
+	<ul class="nav nav-tabs">
+		<li class="active">
+            <a data-toggle="tab" href="#customer">
+                {{ trans('common.customer') }}
+            </a>
+        </li>
+		<li>
+            <a data-toggle="tab" href="#employee">
+                {{ trans('common.employee') }}
+            </a>
+        </li>
+	</ul>
 
-						<!-- Modal -->
-						<div id="myModal{{$user['id']}}" class="modal fade" role="dialog">
-							<div class="modal-dialog">
-							    <!-- Modal content-->
-							    <div class="modal-content">
-							        <div class="modal-header">
-							        	<button type="button" class="close" data-dismiss="modal">&times;</button>
-							        	<h4 class="modal-title"><b>{{trans('common.detail')}}<b></h4>
-							     	</div>
-							      	<div class="modal-body">
-							      		<h3><b>{{trans('common.full_name')}} : </b>{{$user['name']}}</h3>
-							        	<h3><b>{{trans('common.username')}} : </b>{{$user['username']}}</h3>
-							        	<h3><b>{{trans('common.email')}} : </b>{{$user['email']}}</h3>
-							        	<h3><b>{{trans('common.phone')}} : </b>{{$user['phone']}}</h3>
-							        	<h3><b>{{trans('common.address')}} : </b>{{$user['address']}}</h3>
-							      	</div>
-							      	<div class="modal-footer">
-							        	<button type="button" class="btn btn-default" data-dismiss="modal">{{trans('common.close')}}</button>
-							      	</div>
-							    </div>
-							</div>
-						</div>
-						<a href="{{ route('users.edit' , ['id' => $user['id']]) }}" class="btn btn-success btn-sm">
-							{{trans('common.edit')}}
-						</a>
-						{!! Form::open(['route' => ['users.destroy' , $user['id']] , 'method' => 'delete' , 'class' => 'delete_form']) !!}
-							{!! Form::submit(trans('common.delete') , ['class' => 'btn btn-warning btn-sm']) !!}
-						{!! Form::close() !!}
-					</td>
-				</tr>
-				@endforeach
-			</tbody>
-		</table>
+	<div class="tab-content">
+		<div id="customer" class="tab-pane fade in active">
+            <div class="y-scroller">
+                <table class="table table-bordered table-hover table-responsive">
+                    <thead>
+                    <tr>
+                        <th class="text-center">
+                            {{trans('common.name')}}
+                        </th>
+                        <th class="text-center">
+                            {{trans('common.username')}}
+                        </th>
+                        <th class="text-center">
+                            {{trans('common.email')}}
+                        </th>
+                        <th class="text-center">
+                            {{trans('common.action')}}
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($customers as $customer)
+                        <tr>
+                            <td class="text-center">
+                                {{ $customer['name'] }}
+                            </td>
+                            <td class="text-cetner">
+                                {{ $customer['username'] }}
+                            </td>
+                            <td class="text-cetner">
+                                {{ $customer['email'] }}
+                            </td>
+                            <td class="text-cetner">
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal{{$customer['id']}}">{{trans('common.detail')}}</button>
+
+                                <!-- Modal -->
+                                <div id="myModal{{$customer['id']}}" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                    &times;
+                                                </button>
+                                                <h4 class="modal-title">
+                                                    <b>
+                                                        {{trans('common.detail')}}
+                                                        <b>
+                                                </h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h3>
+                                                    <b>
+                                                        {{trans('common.full_name')}} :
+                                                    </b>
+                                                    {{$customer['name']}}
+                                                </h3>
+                                                <h3>
+                                                    <b>
+                                                        {{trans('common.username')}} :
+                                                    </b>
+                                                    {{$customer['username']}}
+                                                </h3>
+                                                <h3>
+                                                    <b>
+                                                        {{trans('common.email')}} :
+                                                    </b>
+                                                    {{$customer['email']}}
+                                                </h3>
+                                                <h3>
+                                                    <b>
+                                                        {{trans('common.phone')}} :
+                                                    </b>
+                                                    {{$customer['phone']}}
+                                                </h3>
+                                                <h3>
+                                                    <b>
+                                                        {{trans('common.address')}} :
+                                                    </b>{{$customer['address']}}
+                                                </h3>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                    {{trans('common.close')}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="{{ route('users.edit' , ['id' => $customer['id']]) }}" class="btn btn-success btn-sm">
+                                    {{trans('common.edit')}}
+                                </a>
+                                {!! Form::open(['route' => ['users.destroy' , $customer['id']] , 'method' => 'delete' , 'class' => 'delete_form']) !!}
+                                {!! Form::submit(trans('common.delete') , ['class' => 'btn btn-warning btn-sm']) !!}
+                                {!! Form::close() !!}
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+		</div>
+		<div id="employee" class="tab-pane fade">
+            <div class="y-scroller">
+                <table class="table table-bordered table-hover table-responsive">
+                    <thead>
+                    <tr>
+                        <th class="text-center">
+                            {{trans('common.name')}}
+                        </th>
+                        <th class="text-center">
+                            {{trans('common.username')}}
+                        </th>
+                        <th class="text-center">
+                            {{trans('common.email')}}
+                        </th>
+                        <th class="text-center">
+                            {{trans('common.action')}}
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($employees as $employee)
+                        <tr>
+                            <td class="text-center">
+                                {{ $employee['name'] }}
+                            </td>
+                            <td class="text-cetner">
+                                {{ $employee['username'] }}
+                            </td>
+                            <td class="text-cetner">
+                                {{ $employee['email'] }}
+                            </td>
+                            <td class="text-cetner">
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal{{$employee['id']}}">{{trans('common.detail')}}</button>
+
+                                <!-- Modal -->
+                                <div id="myModal{{$employee['id']}}" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                    &times;
+                                                </button>
+                                                <h4 class="modal-title">
+                                                    <b>
+                                                        {{trans('common.detail')}}
+                                                        <b>
+                                                </h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h3>
+                                                    <b>
+                                                        {{trans('common.full_name')}} :
+                                                    </b>
+                                                    {{$employee['name']}}
+                                                </h3>
+                                                <h3>
+                                                    <b>
+                                                        {{trans('common.username')}} :
+                                                    </b>
+                                                    {{$employee['username']}}
+                                                </h3>
+                                                <h3>
+                                                    <b>
+                                                        {{trans('common.email')}} :
+                                                    </b>
+                                                    {{$employee['email']}}
+                                                </h3>
+                                                <h3>
+                                                    <b>
+                                                        {{trans('common.phone')}} :
+                                                    </b>
+                                                    {{$employee['phone']}}
+                                                </h3>
+                                                <h3>
+                                                    <b>
+                                                        {{trans('common.address')}} :
+                                                    </b>{{$employee['address']}}
+                                                </h3>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                    {{trans('common.close')}}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="{{ route('users.edit' , ['id' => $employee['id']]) }}" class="btn btn-success btn-sm">
+                                    {{trans('common.edit')}}
+                                </a>
+                                {!! Form::open(['route' => ['users.destroy' , $employee['id']] , 'method' => 'delete' , 'class' => 'delete_form']) !!}
+                                {!! Form::submit(trans('common.delete') , ['class' => 'btn btn-warning btn-sm']) !!}
+                                {!! Form::close() !!}
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+		</div>
 	</div>
 	<script type="text/javascript">
 		$('.delete_form').submit(function(e){

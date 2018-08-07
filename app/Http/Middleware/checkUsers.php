@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
-class checkLogin
+class checkUsers
 {
     /**
      * Handle an incoming request.
@@ -17,18 +18,17 @@ class checkLogin
     public function handle($request, Closure $next)
     {
         if(Auth::check())
-        {
-            $user = Auth::user();
-            if ($user->role == 1 || $user->role == 2)
+        {   
+            $edit_users = User::findOrFail( $request->route()->parameters()['id'] );
+            $users = Auth::user();
+            if($users == $edit_users)
             {
                 return $next($request);
+            } else {
+                return redirect('/');
             }
-            else
-            {
-                return redirect( '/' ) -> with('notify', trans('messages.admin_login'));
-            }
+        } else {
+            return redirect( 'register' );
         }
-        else
-            return redirect( '/login' ) -> with('notify', trans('messages.is_correct'));
     }
 }
