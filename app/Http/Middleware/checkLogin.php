@@ -19,7 +19,7 @@ class checkLogin
         if(Auth::check())
         {
             $user = Auth::user();
-            if ($user->role == -1)
+            if ($user->role == 1 || $user->role == 2)
             {
                 return $next($request);
             }

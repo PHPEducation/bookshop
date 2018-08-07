@@ -22,6 +22,7 @@
     <link href="{!! asset('/bower_components/admin/css/animate.css') !!}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{!! asset('/bower_components/admin/css/style.css') !!}" rel="stylesheet">
+    <link href="{!! asset('bower_components/select2/dist/css/select2.min.css') !!}" rel="stylesheet" />
     <!-- color CSS -->
     <link href="{!! asset('/bower_components/admin/css/colors/blue-dark.css') !!}" id="theme" rel="stylesheet">
     <!-- bootstrap Modal -->
@@ -44,6 +45,7 @@
     <!--Morris JavaScript -->
     <script src="{!! asset('/bower_components/admin/plugins/bower_components/raphael/raphael-min.js') !!}"></script>
     <script src="{!! asset('/bower_components/admin/plugins/bower_components/morrisjs/morris.js') !!}"></script>
+    <script src="{!! asset('bower_components/select2/dist/js/select2.min.js') !!}"></script>
     <!-- Custom Theme JavaScript -->
     <script src="{!! asset('/bower_components/admin/js/custom.min.js') !!}"></script>
     <script src="{!! asset('/bower_components/admin/js/dashboard1.js') !!}"></script>

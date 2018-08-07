@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -16,7 +17,23 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        return view('admin.user.show', compact('users'));
+        $customers = array();
+
+        $employees = array();
+
+        foreach ($users as $user)
+        {
+            if($user->role == 0)
+            {
+                array_push($customers, $user);
+            }
+            else
+            {
+                array_push($employees, $user);
+            }
+        }
+
+        return view('admin.user.show', compact('customers', 'employees'));
     }
 
     /**
@@ -45,7 +62,7 @@ class UserController extends Controller
 
         $user->username = $data['username'];
 
-        $user->password = bcrypt($data['password']);
+        $user->password = Hash::make($data['password']);
 
         $user->email = $data['email'];
 
@@ -54,6 +71,8 @@ class UserController extends Controller
         $user->address = $data['address'];
 
         $user->birthday = $data['birthday'];
+
+        $user->role = 2;
 
         $user->save();
 
