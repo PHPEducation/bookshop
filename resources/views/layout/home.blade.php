@@ -11,7 +11,7 @@
                         <div class="bb-custom-content">
                             <div class="slide-inner">
                                 <div class="span4 book-holder">
-                                    <a href="{{ url('/book-detail').'/'.$rate->id }}"><img class="image1" src="{{ $rate->image }}" alt="Book" /></a>
+                                    <a href="{{ url('/book-detail').'/'.$rate->id }}"><img class="image1" src="{{$rate->image}}" alt="Book" /></a>
                                     <div class="cart-price">
                                         <a class="cart-btn2" href="{{ url('/cart').'/'.$rate->id }}">{{ trans('messages.add_cart') }}</a>
                                         <span class="price">{{ number_format($rate->price) }} vnd</span>
@@ -51,7 +51,7 @@
     @foreach($books_sale as $sale)
         <figure class="span4 s-product">
             <div class="s-product-img">
-                <a href="{{ url('/book-detail').'/'.$sale->id }}"><img class="image2" src="{{ $sale->image }}" alt="Image02"/></a>
+                <a href="{{ url('/book-detail').'/'.$sale->id }}"><img class="image2" src="{!! asset('/storage/' . $sale->image) !!}" alt="Image02"/></a>
             </div>
             <article class="s-product-det">
                 <h3><a href="{{ url('/book-detail').'/'.$sale->id }}">{{ $sale->name }}</a></h3>
@@ -79,7 +79,7 @@
             <div class="slider1">
         @foreach($books_new as $new)
             <div class="slide"> <a href="{{ url('/book-detail').'/'.$new->id }}">
-                <img class="image3" src="{{ $new->image }}" alt="" class="pro-img"/></a><span class="title"><strong><a href="{{ url('/book-detail').'/'.$new->id }}">{{ $new->name }}</a></strong></span>
+                <img class="image3" src="{!! asset('/storage/' . $new->image) !!}" alt="" class="pro-img"/></a><span class="title"><strong><a href="{{ url('/book-detail').'/'.$new->id }}">{{ $new->name }}</a></strong></span>
                 <span class="title">{{ $new->author }}</span>
                 <span class="rating-bar"><img src="images/rating-star.png" alt="Rating Star"/></span>
             <div class="cart-price">
